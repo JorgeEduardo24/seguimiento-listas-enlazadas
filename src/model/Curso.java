@@ -7,6 +7,7 @@ public class Curso {
 	private Estudiante primerEstudiante;
 	private Estudiante ultimoEstudiante;
 	private Estudiante head;
+	public int estudiantesEliminados;
 	
 	public Curso(String nombre, int numEstudiantes) {
 		this.nombre = nombre;
@@ -52,13 +53,17 @@ public class Curso {
 	}
 	
 	
-	
 	public Estudiante getHead() {
 		return head;
 	}
 
 	public void setHead(Estudiante head) {
 		this.head = head;
+	}
+	
+	
+	public int getEstudiantesEliminados() {
+		return estudiantesEliminados;
 	}
 
 	public void addEstudiante(Estudiante estudiante) {
@@ -122,6 +127,7 @@ public class Curso {
 				eliminar=primerEstudiante;
 				primerEstudiante = primerEstudiante.getSiguiente();
 				eliminar.setSiguiente(null);
+				this.estudiantesEliminados++;
 			}else {
 				Estudiante anterior = primerEstudiante;
 				Estudiante actual = anterior.getSiguiente();
@@ -137,6 +143,7 @@ public class Curso {
 						actual = actual.getSiguiente();
 					}
 				}
+				this.estudiantesEliminados++;
 			}
 		}
 		 return eliminar;
@@ -144,19 +151,20 @@ public class Curso {
 	
 	
 	public void pintarEstudiantes() {
-		
+		Estudiante primerEstudiante = getPrimerEstudiante();
+		do {
+			System.out.println(primerEstudiante.toString());
+			primerEstudiante = primerEstudiante.getSiguiente();
+		}while(primerEstudiante != getHead());
 	}
 	
 	public void pintarAtrasAdelanteEstudiantes() {
-		
+		Estudiante aux = getUltimoEstudiante();
+		do {
+			System.out.println(aux.toString());
+			aux = aux.getAnterior();
+		}while(aux != getUltimoEstudiante());
 	}
 	
-	public void pintarGeneral() {
-		
-	}
-	
-	public void pintarEstudiantesRecursivo(Estudiante estudiante) {
-		
-	}
 	
 }
